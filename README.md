@@ -106,6 +106,8 @@ videostore/
 
 
 ## 📄 License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under a **Custom Proprietary License**.  
+Copying, distribution or usage without permission is strictly prohibited.  
+See [LICENSE](LICENSE) for more information.
 
 Created by [fxcker01](https://github.com/fxcker01) 🖤
