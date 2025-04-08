@@ -1,0 +1,81 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+<div class="container mx-auto px-4 py-10">
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+    <!-- Ліва частина (основний контент) -->
+    <div class="lg:col-span-2">
+
+      <!-- Header блок: картинка + заголовок -->
+      <div class="flex flex-col md:flex-row items-start md:items-center gap-6 mb-8 bg-card p-6 rounded-xl shadow-md">
+        <div class="w-full md:w-32 flex-shrink-0">
+          {% if object.image %}
+            <img src="{{ object.image.url }}" alt="{{ object.title }}" class="rounded-lg w-full object-cover">
+          {% else %}
+            <img src="/pictures/default.jpg" alt="{{ object.title }}" class="rounded-lg w-full object-cover">
+          {% endif %}
+        </div>
+        <div class="flex-1">
+          <h1 class="text-2xl font-semibold text-white mb-2">{{ lesson.title }}</h1>
+          <p class="text-sm text-gray-400">Course: <strong>{{ object.title }}</strong></p>
+        </div>
+      </div>
+
+      <!-- Відео -->
+      {% if object.is_free or user.profile.account_type == 'full' %}
+        <div class="aspect-w-16 aspect-h-9 mb-8 rounded-xl overflow-hidden">
+          <iframe
+            class="w-full h-full"
+            src="https://www.youtube.com/embed/{{ lesson.video }}"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+        </div>
+
+        <!-- Опис -->
+        <div class="bg-card p-6 rounded-xl shadow-md text-gray-300">
+          <p>{{ lesson.desc }}</p>
+        </div>
+      {% else %}
+        <div class="bg-card p-6 rounded-xl shadow-md text-red-400">
+          <p>You need to purchase a <a href="{% url 'tarrifs' %}" class="underline text-neon">subscription</a> to view this lesson.</p>
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Права частина (панель уроків) -->
+    <div class="bg-card p-6 rounded-xl max-h-[700px] overflow-y-auto shadow-md">
+      <h2 class="text-xl font-semibold mb-4 text-white">Lessons</h2>
+
+      {% if object.is_free == False and user.is_authenticated == False %}
+        <p class="text-gray-300">You need to <a href="{% url 'reg' %}" class="text-neon hover:underline">register</a> to access this course.</p>
+
+      {% else %}
+        {% if object.is_free or user.profile.account_type == 'full' %}
+          <ul class="space-y-2">
+            {% for el in lessons %}
+              <li>
+                <a
+                  href="{{ el.get_absolute_url }}"
+                  class="block p-2 rounded-md transition text-sm
+                  {% if el.slug == lesson.slug %}
+                    bg-neon text-background font-semibold
+                  {% else %}
+                    text-neon hover:underline hover:bg-accent/20
+                  {% endif %}"
+                >
+                  {{ el.number }}. {{ el.title }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="text-gray-300">You need to purchase a <a href="{% url 'tarrifs' %}" class="text-neon hover:underline">subscription</a>!</p>
+        {% endif %}
+      {% endif %}
+    </div>
+
+  </div>
+</div>
+{% endblock %}

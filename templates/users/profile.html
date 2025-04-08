@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+  <div class="max-w-3xl mx-auto mt-16 bg-card p-8 rounded-2xl shadow-lg border border-gray-800">
+    <h2 class="text-2xl font-semibold mb-6 text-white text-center">User Dashboard</h2>
+
+    <div class="flex items-center gap-4 mb-8">
+      <img src="{{ user.profile.img.url }}" alt="Profile Image" class="w-20 h-20 rounded-full border border-gray-600 object-cover">
+      <div>
+        <p class="text-white text-lg font-medium">@{{ user.username }}</p>
+        <p class="text-gray-400 text-sm"><strong>Email:</strong> {{ user.email }}</p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold text-white mb-4">Edit Profile Information</h3>
+    <form method="POST" enctype="multipart/form-data" class="space-y-4">
+      {% csrf_token %}
+      <div class="space-y-4">
+        {{ update_user.as_p }}
+        {{ img_profile.as_p }}
+      </div>
+      <button type="submit" class="w-full py-2 px-4 bg-accent text-white font-semibold rounded-lg hover:bg-neon transition">
+        Update Information
+      </button>
+    </form>
+  </div>
+{% endblock main %}

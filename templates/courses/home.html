@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+    <div class="container mx-auto px-4 py-10">
+      <h1 class="text-3xl text-white font-semibold mb-8">Programming Courses</h1>
+
+      <!-- Categories Block -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-12 text-center">
+        <a href="{% url 'courses-by-category' 'all' %}" class="bg-card p-4 rounded-xl border border-gray-700 hover:border-neon transition block">All</a>
+        <a href="{% url 'courses-by-category' 'games' %}" class="bg-card p-4 rounded-xl border border-gray-700 hover:border-neon transition block">Games</a>
+        <a href="{% url 'courses-by-category' 'web' %}" class="bg-card p-4 rounded-xl border border-gray-700 hover:border-neon transition block">Websites</a>
+        <a href="{% url 'courses-by-category' 'design' %}" class="bg-card p-4 rounded-xl border border-gray-700 hover:border-neon transition block">Design</a>
+        <a href="{% url 'courses-by-category' 'languages' %}" class="bg-card p-4 rounded-xl border border-gray-700 hover:border-neon transition block">Languages</a>
+        <a href="{% url 'courses-by-category' 'other' %}" class="bg-card p-4 rounded-xl border border-gray-700 hover:border-neon transition block">Other</a>
+        <a href="{% url 'courses-by-category' 'paid' %}" class="bg-card p-4 rounded-xl border border-gray-700 hover:border-neon transition block">Paid</a>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+          {% for el in courses %}
+              <div class="bg-card rounded-2xl p-4 shadow-lg hover:shadow-xl transition duration-300 flex flex-col">
+                  <div class="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden mb-4">
+                      <img src="{{ el.image.url }}" alt="{{ el.title }}" class="w-full h-full object-cover hover:scale-105 transition duration-500 ease-in-out">
+                  </div>
+                  <h3 class="text-white text-lg font-semibold mb-2 line-clamp-2">{{ el.title }}</h3>
+                  <a href="{{ el.get_absolute_url }}" class="text-neon mt-auto hover:underline text-sm">View Course →</a>
+              </div>
+          {% endfor %}
+      </div>
+
+      <!-- Pagination -->
+      {% if is_paginated %}
+        <div class="flex justify-center mt-8">
+          <div class="flex items-center space-x-4">
+            {% if page_obj.has_previous %}
+              <a href="{% url 'home' %}" class="bg-gray-700 hover:bg-gray-800 text-white py-2 px-4 rounded transition">Return</a>
+              <a href="?page={{ page_obj.previous_page_number }}" class="bg-gray-700 hover:bg-gray-800 text-white py-2 px-4 rounded transition">Previous</a>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+              {% if num == page_obj.number %}
+                <button class="bg-neon text-black py-2 px-4 rounded transition">{{ num }}</button>
+              {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <a href="?page={{ num }}" class="bg-gray-700 hover:bg-gray-800 text-white py-2 px-4 rounded transition">{{ num }}</a>
+              {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+              <a href="?page={{ page_obj.next_page_number }}" class="bg-gray-700 hover:bg-gray-800 text-white py-2 px-4 rounded transition">Next</a>
+              <a href="?page={{ page_obj.paginator.num_pages}}" class="bg-gray-700 hover:bg-gray-800 text-white py-2 px-4 rounded transition">Last</a>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ title }}</title>
+  <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+  <script src="https://cdn.tailwindcss.com?plugins=aspect-ratio,line-clamp,forms"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: '#0f0f0f',
+            card: '#1a1a1a',
+            neon: '#00e0ff',
+            accent: '#a855f7',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body class="bg-background text-white font-sans min-h-screen flex flex-col">
+
+  <!-- Header -->
+<header class="bg-background border-b border-gray-800 shadow-md">
+  <div class="max-w-7xl w-full mx-auto px-4 py-4 flex items-center justify-between">
+
+    <!-- Логотип -->
+    <a href="{% url 'home' %}" class="text-neon text-2xl font-bold tracking-widest">Educore</a>
+
+    <!-- Кнопка-бургер -->
+    <button id="burger" class="text-white text-2xl sm:hidden focus:outline-none">
+      ☰
+    </button>
+
+    <!-- Навігація -->
+    <nav id="navMenu" class="hidden sm:flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 text-base font-medium absolute sm:static top-16 left-0 w-full sm:w-auto bg-background sm:bg-transparent p-4 sm:p-0 z-50 shadow-lg sm:shadow-none">
+      <a href="{% url 'home' %}" class="hover:text-neon transition">Home</a>
+      <a href="{% url 'tarrifs' %}" class="hover:text-neon transition">Plans</a>
+      {% if user.is_authenticated %}
+        <a href="{% url 'profile' %}" class="hover:text-neon transition">Profile</a>
+        <form method="POST" action="{% url 'exit' %}" class="inline-block">
+          {% csrf_token %}
+          <button type="submit" class="hover:text-neon transition text-white font-medium text-base bg-transparent border-none p-3 m-0 whitespace-nowrap">
+            Log Out
+          </button>
+        </form>
+      {% else %}
+        <a href="{% url 'user' %}" class="hover:text-neon transition">Log In</a>
+        <a href="{% url 'reg' %}" class="hover:text-neon transition">Sign Up</a>
+      {% endif %}
+    </nav>
+  </div>
+</header>
+
+<main class="flex-1 w-full max-w-7xl mx-auto px-4">
+  {% block main %}
+  {% endblock %}
+</main>
+
+<footer class="bg-background border-t border-gray-800 text-center py-6 text-sm text-gray-400 px-4">
+  © {{ now|date:"Y" }} Educore. All rights reserved.
+</footer>
+
+<script>
+  const burger = document.getElementById('burger');
+  const navMenu = document.getElementById('navMenu');
+
+  burger.addEventListener('click', () => {
+    navMenu.classList.toggle('hidden');
+  });
+</script>
+</body>
+</html>

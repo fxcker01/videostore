@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+<div class="w-full max-w-2xl mx-auto px-4 py-16 mt-16 bg-card rounded-xl shadow-lg">
+
+  <h2 class="text-2xl sm:text-3xl font-bold text-white mb-8 text-center">{{ title }}</h2>
+
+  <form method="POST" enctype="multipart/form-data" class="space-y-6">
+    {% csrf_token %}
+
+    <div>
+      <label for="{{ form.slug.id_for_label }}" class="block text-white mb-1">Slug</label>
+      {{ form.slug }}
+    </div>
+
+    <div>
+      <label for="{{ form.title.id_for_label }}" class="block text-white mb-1">Title</label>
+      {{ form.title }}
+    </div>
+
+    <div>
+      <label for="{{ form.desc.id_for_label }}" class="block text-white mb-1">Course description</label>
+      {{ form.desc }}
+    </div>
+
+    <div>
+      <label for="{{ form.image.id_for_label }}" class="block text-white mb-1">Image</label>
+      {{ form.image }}
+    </div>
+
+    <div class="flex items-center gap-2">
+      {{ form.is_free }}
+      <label for="{{ form.is_free.id_for_label }}" class="text-white">Free course?</label>
+    </div>
+
+    <button type="submit"
+      class="bg-neon text-black font-semibold px-6 py-3 rounded-lg hover:brightness-110 transition w-full sm:w-auto">
+      Add course
+    </button>
+  </form>
+
+</div>
+{% endblock %}
