@@ -1,1 +1,1 @@
-web: gunicorn videostore.wsgi
+web: gunicorn videostore.wsgi --log-file -
