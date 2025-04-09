@@ -1,38 +1,43 @@
-# Python
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
-*.pyo
-*.pyd
-*.pyc
-*.pdb
-*.egg-info/
-*.egg
-.env
-.venv/
+
+# Virtual environment
 venv/
 ENV/
+env/
+.venv/
+.Python
 
-# VSCode
-.vscode/
-
-# Django
-db.sqlite3
-media/
-staticfiles/
+# Django stuff
 *.log
+db.sqlite3
+db.sqlite3-journal
+staticfiles/
 
-# OS
+# Environment variables
+.env
+*.env
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime-*
+
+# OS-generated files
 .DS_Store
 Thumbs.db
 
-# Virtualenv
-*.swp
-.idea/
-*.bak
+# Testing
+.coverage
+.tox/
+.pytest_cache/
 
-# dotenv
-.env.*
-.env
+# PyInstaller
+*.spec
 
-# Mac system files
-*.DS_Store
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
+__pypackages__/
