@@ -43,7 +43,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    'videostore.middleware.restrict_admin.RestrictAdminMiddleware',
+    'middleware.restrict_admin.RestrictAdminMiddleware',
 ]
 
 ROOT_URLCONF = 'videostore.urls'
