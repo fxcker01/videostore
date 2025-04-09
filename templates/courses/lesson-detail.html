@@ -41,7 +41,7 @@
         </div>
 
         <div class="bg-card p-6 rounded-xl shadow-md text-gray-300">
-          <p>{{ lesson.desc }}</p>
+          <p>{{ lesson.desc|safe }}</p>
         </div>
       {% else %}
         <div class="bg-card p-6 rounded-xl shadow-md text-red-400">
