@@ -12,8 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 load_dotenv()
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
-
+SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
@@ -42,6 +41,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'middleware.restrict_admin.RestrictAdminMiddleware',
 ]
 
 ROOT_URLCONF = 'videostore.urls'
@@ -61,6 +61,8 @@ TEMPLATES = [
         },
     },
 ]
+
+HANDLER403 = 'videostore.views.custom_403_view'
 
 WSGI_APPLICATION = 'videostore.wsgi.application'
 

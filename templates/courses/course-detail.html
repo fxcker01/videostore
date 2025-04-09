@@ -17,7 +17,6 @@
       </div>
     </div>
 
-    <!-- Опис курсу -->
     <div class="w-full lg:w-2/3">
       <h2 class="text-2xl font-semibold text-white mb-4">Course Description</h2>
 
@@ -38,12 +37,13 @@
     </div>
   </div>
 
-  <!-- Кнопка переходу -->
   {% if object.is_free or user.profile.account_type == 'full' and lessons %}
     <div class="mt-10 flex justify-center">
-      <a href="{{ lessons.0.get_absolute_url }}" class="inline-block bg-neon text-background font-semibold py-3 px-8 rounded-lg text-lg hover:opacity-90 transition">
-        Start Learning →
-      </a>
+      {% if lessons|length > 0 %}
+        <a href="{{ lessons.0.get_absolute_url }}" class="inline-block bg-neon text-background font-semibold py-3 px-8 rounded-lg text-lg hover:opacity-90 transition">
+          Start Learning →
+        </a>
+      {% endif %}
     </div>
   {% endif %}
 </div>

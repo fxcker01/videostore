@@ -1,108 +1,98 @@
-Educore – Online Course Platform
-A stylish, fully functional Django-powered course platform with user registration, subscriptions, lesson video playback, Tailwind CSS interface, and mobile-adaptive layout. Designed for educational projects, portfolios, or SaaS-like applications.
+# 🎓 Educore – Online Course Platform
 
-🛠 Technologies Used
-Backend:
+A modern, dark-themed online learning platform built with Django, Tailwind CSS, and PostgreSQL. Educore allows users to register, browse categorized programming courses, view lessons, and manage personal profiles with subscription support.
 
-Python
+---
 
-Django
+## 🛠 Technologies Used
 
-Frontend:
+- **Backend**: Python, Django
+- **Frontend**: Tailwind CSS, HTML, JavaScript
+- **Database**: SQLite (default), PostgreSQL (for production)
+- **Deployment**: Railway, GitHub, Gunicorn
 
-Tailwind CSS
+---
 
-HTML5
+## 🚀 Features
 
-JavaScript
+- User registration, login, logout
+- Profile with avatar and email editing
+- Course & lesson pages with video embedding
+- Access control (free/paid content)
+- Category-based course filtering
+- Pagination support
+- Tailwind-powered adaptive UI
+- Admin course creation panel
 
-Database:
+---
 
-SQLite (local) / PostgreSQL (Railway)
+## ⚙️ Getting Started
 
-Deployment:
-
-Railway
-
-Git + GitHub
-
-🚀 Features
-🔐 User authentication (Register, Login, Logout)
-
-🧑‍💻 Personal user dashboard with profile image update
-
-🎥 Course + lesson management with YouTube video support
-
-💳 Subscription model (Free & Paid courses)
-
-🖼 Modern, responsive UI with Tailwind
-
-💾 Admin panel for adding courses and lessons
-
-📂 Organized and scalable project structure
-
-⚙️ Getting Started
-1. Clone the repo
-bash
-Copy
-Edit
+### 1. Clone the repo
+```bash
 git clone https://github.com/fxcker01/videostore.git
 cd videostore
-2. Set up virtual environment
-bash
-Copy
-Edit
+```
+
+### 2. Set up virtual environment
+```bash
 python -m venv venv
 source venv/bin/activate  # or venv\Scripts\activate on Windows
-3. Install dependencies
-bash
-Copy
-Edit
+```
+
+### 3. Install dependencies
+```bash
 pip install -r requirements.txt
-4. Run migrations and create superuser
-bash
-Copy
-Edit
+```
+
+### 4. Run migrations and create superuser
+```bash
 python manage.py migrate
 python manage.py createsuperuser
-5. Start the development server
-bash
-Copy
-Edit
+```
+
+### 5. Start the development server
+```bash
 python manage.py runserver
-Open your browser at http://127.0.0.1:8000/ 🎉
+```
 
-🌐 Deployment on Railway
-Make sure your .env file contains:
+Visit: `http://127.0.0.1:8000/` 🎉
 
-ini
-Copy
-Edit
+---
+
+## 🌐 Deployment on Railway
+
+### .env file example:
+```ini
 SECRET_KEY=your_secret_key
 DEBUG=False
 ALLOWED_HOSTS=.yourdomain.com,127.0.0.1,localhost
-And Procfile should contain:
+```
 
-procfile
-Copy
-Edit
+### Procfile:
+```procfile
 web: gunicorn videostore.wsgi
-📁 Project Structure
-bash
-Copy
-Edit
+```
+
+---
+
+## 📁 Project Structure
+```
 videostore/
-├── courses/           # Course and lesson logic
-├── users/             # Registration, login, profile
-├── templates/         # All templates grouped by app
-├── static/            # Tailwind CSS and JS
-├── media/             # Uploaded images (course covers, avatars)
+├── courses/          # Course and lesson logic
+├── users/            # Registration, login, profile
+├── templates/        # All templates grouped by app
+├── static/           # Tailwind CSS and JS
+├── media/            # Uploaded images (course covers, avatars)
 ├── .env
 ├── .gitignore
 ├── Procfile
 ├── requirements.txt
 ├── LICENSE
 └── README.md
+```
+
+---
 
 
 ## 📄 License

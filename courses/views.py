@@ -75,34 +75,64 @@ class LessonDetailPage(DetailView):
     template_name = 'courses/lesson-detail.html'
 
     def get_context_data(self, *, object_list=None, **kwargs):
-        ctx = super(LessonDetailPage, self).get_context_data(**kwargs)
-        #
-        # course_slug = self.kwargs.get('slug')
-        # lesson_slug = self.kwargs.get('lesson_slug')
-
+        ctx = super().get_context_data(**kwargs)
         course = Course.objects.filter(slug=self.kwargs['slug']).first()
         lesson = Lesson.objects.filter(slug=self.kwargs['lesson_slug']).first()
+        lessons = Lesson.objects.filter(course=course).order_by('number')
 
-        lesson.video = lesson.video.split("=")[1]
+        # Обробка YouTube чи Vimeo
+        video_url = lesson.video
+
+        if 'youtube.com' in video_url:
+            try:
+                lesson.video_embed = video_url.split('=')[1]
+                ctx['video_source'] = 'youtube'
+            except IndexError:
+                lesson.video_embed = ''
+                ctx['video_source'] = 'unknown'
+
+        elif 'vimeo.com' in video_url:
+            try:
+                parts = video_url.split('/')
+                video_id = parts[3]  # ID після vimeo.com/
+                token = parts[4] if len(parts) > 4 else ''
+                if token:
+                    lesson.video_embed = f"{video_id}?h={token}"
+                else:
+                    lesson.video_embed = video_id
+                    ctx['video_source'] = 'vimeo'
+            except IndexError:
+                lesson.video_embed = ''
+                ctx['video_source'] = 'unknown'
+
+        else:
+            lesson.video_embed = ''
+            ctx['video_source'] = 'unknown'
+
 
         ctx['lesson'] = lesson
-        ctx['title'] = lesson
-        ctx['lesson'] = lesson
+        ctx['title'] = lesson.title
         ctx['lessons'] = Lesson.objects.filter(course=course).order_by('number')
         return ctx
 
+# course_slug = self.kwargs.get('slug')
+# lesson_slug = self.kwargs.get('lesson_slug')
 
+#------
+
+# lesson.video = lesson.video.split("=")[1]
 class CourseByCategory(ListView):
     model = Course
     template_name = 'courses/home.html'
     context_object_name = 'courses'
+    ordering = ['-id']
     paginate_by = 6
 
     def get_queryset(self):
         category = self.kwargs['category']
         if category == 'all':
-            return Course.objects.all()
-        return Course.objects.filter(category=category)
+            return Course.objects.all().order_by('-id')
+        return Course.objects.filter(category=category).order_by('-id')
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)

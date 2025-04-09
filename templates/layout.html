@@ -29,19 +29,15 @@
 
 <body class="bg-background text-white font-sans min-h-screen flex flex-col">
 
-  <!-- Header -->
 <header class="bg-background border-b border-gray-800 shadow-md">
   <div class="max-w-7xl w-full mx-auto px-4 py-4 flex items-center justify-between">
 
-    <!-- Логотип -->
     <a href="{% url 'home' %}" class="text-neon text-2xl font-bold tracking-widest">Educore</a>
 
-    <!-- Кнопка-бургер -->
     <button id="burger" class="text-white text-2xl sm:hidden focus:outline-none">
       ☰
     </button>
 
-    <!-- Навігація -->
     <nav id="navMenu" class="hidden sm:flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 text-base font-medium absolute sm:static top-16 left-0 w-full sm:w-auto bg-background sm:bg-transparent p-4 sm:p-0 z-50 shadow-lg sm:shadow-none">
       <a href="{% url 'home' %}" class="hover:text-neon transition">Home</a>
       <a href="{% url 'tarrifs' %}" class="hover:text-neon transition">Plans</a>
