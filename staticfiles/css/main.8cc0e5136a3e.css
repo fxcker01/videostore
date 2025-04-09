@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #fef3e0;
+    font-weight: 300;
+    font-family: 'Montserrat', sans-serif;
+}
+
+a {
+    color: #6f6f6f;
+    text-decoration: none;
+    transition: color 500ms ease;
+}
+
+a:hover {
+    color: #1f1f1f;
+}
+
+.container {
+    max-width: 1258px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+header.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+header .logo {
+    color: #222;
+    font-weight: 600;
+    font-size: 25px;
+}
+
+header nav a {
+    margin-left: 15px;
+}
+
+
+.form-section {
+    box-sizing: border-box;
+    background: #fff;
+    padding: 40px 30px;
+    box-shadow: 0px 2px 4px 0px rgb(5 5 5 / 5%);
+}
+
+form label {
+    margin-top: 15px;
+    display: block;
+    font-weight: 600;
+}
+
+
+form .helptext {
+    font-size: 13px;
+    display: block;
+    color: #5e5e5e;
+}
+
+form input {
+    font-family: 'Montserrat', sans-serif;
+    display: block;
+    padding: 10px 12px;
+    border-radius: 5px;
+    border: 1px solid silver;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+
+#id_username,
+#id_password,
+#id_email,
+#id_password1,
+#id_password2{
+    width: 100%;
+    max-width: 370px;
+}
+
+.form-section button, form button {
+    margin-top: 20px;
+    padding: 7px 12px;
+    border-radius: 5px;
+    border: 0;
+    background: black;
+    color: #fff;
+    transition: transform 500ms ease;
+    cursor: pointer;
+}
+.form-section button:hover, form button:hover{transform: scale(1.2);}
+hr {margin: 10px 0;}
+
+footer {
+    margin-top: 50px;
+    margin-bottom: 100px;
+    text-align: center;
+}
+
+input, select, textarea {
+  background-color: #fff !important;
+  color: #000 !important;
+  border: 1px solid #4b5563;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
