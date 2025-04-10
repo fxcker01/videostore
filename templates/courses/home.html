@@ -4,15 +4,14 @@
     <div class="container mx-auto px-4 py-10">
       <h1 class="text-3xl text-white font-semibold mb-8">Programming Courses</h1>
 
-      <!-- Categories Block -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-12 text-center">
-        <a href="{% url 'courses-by-category' 'all' %}" class="bg-card p-4 rounded-xl border border-gray-700 hover:border-neon transition block">All</a>
-        <a href="{% url 'courses-by-category' 'games' %}" class="bg-card p-4 rounded-xl border border-gray-700 hover:border-neon transition block">Games</a>
-        <a href="{% url 'courses-by-category' 'web' %}" class="bg-card p-4 rounded-xl border border-gray-700 hover:border-neon transition block">Websites</a>
-        <a href="{% url 'courses-by-category' 'design' %}" class="bg-card p-4 rounded-xl border border-gray-700 hover:border-neon transition block">Design</a>
-        <a href="{% url 'courses-by-category' 'languages' %}" class="bg-card p-4 rounded-xl border border-gray-700 hover:border-neon transition block">Languages</a>
-        <a href="{% url 'courses-by-category' 'other' %}" class="bg-card p-4 rounded-xl border border-gray-700 hover:border-neon transition block">Other</a>
-        <a href="{% url 'courses-by-category' 'paid' %}" class="bg-card p-4 rounded-xl border border-gray-700 hover:border-neon transition block">Paid</a>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10 text-center">
+        <a href="{% url 'courses-by-category' 'all' %}" class="text-lg bg-card p-4 rounded-xl border border-gray-700 hover:border-neon transition block">All</a>
+        <a href="{% url 'courses-by-category' 'games' %}" class="text-lg bg-card p-4 rounded-xl border border-gray-700 hover:border-neon transition block">Games</a>
+        <a href="{% url 'courses-by-category' 'web' %}" class="text-lg bg-card p-4 rounded-xl border border-gray-700 hover:border-neon transition block">Websites</a>
+        <a href="{% url 'courses-by-category' 'design' %}" class="text-lg bg-card p-4 rounded-xl border border-gray-700 hover:border-neon transition block">Design</a>
+        <a href="{% url 'courses-by-category' 'languages' %}" class="text-lg bg-card p-4 rounded-xl border border-gray-700 hover:border-neon transition block">Languages</a>
+        <a href="{% url 'courses-by-category' 'other' %}" class="text-lg bg-card p-4 rounded-xl border border-gray-700 hover:border-neon transition block">Other</a>
+        <a href="{% url 'courses-by-category' 'paid' %}" class="text-lg bg-card p-4 rounded-xl border border-gray-700 hover:border-neon transition block">Paid</a>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6">
@@ -22,12 +21,11 @@
                       <img src="{{ el.image.url }}" alt="{{ el.title }}" class="w-full h-full object-cover hover:scale-105 transition duration-500 ease-in-out">
                   </div>
                   <h3 class="text-white text-lg font-semibold mb-2 line-clamp-2">{{ el.title }}</h3>
-                  <a href="{{ el.get_absolute_url }}" class="text-neon mt-auto hover:underline text-sm">View Course →</a>
+                  <a href="{{ el.get_absolute_url }}" class="text-md text-neon hover:text-accent transition duration-300 mt-auto">View Course →</a>
               </div>
           {% endfor %}
       </div>
 
-      <!-- Pagination -->
       {% if is_paginated %}
         <div class="flex justify-center mt-8">
           <div class="flex items-center space-x-4">

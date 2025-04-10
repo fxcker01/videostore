@@ -32,20 +32,20 @@
 <header class="bg-background border-b border-gray-800 shadow-md">
   <div class="max-w-7xl w-full mx-auto px-4 py-4 flex items-center justify-between">
 
-    <a href="{% url 'home' %}" class="text-neon text-2xl font-bold tracking-widest">Educore</a>
+    <a href="{% url 'home' %}" class="text-neon text-3xl font-bold tracking-widest">Educore</a>
 
     <button id="burger" class="text-white text-2xl sm:hidden focus:outline-none">
       ☰
     </button>
 
     <nav id="navMenu" class="hidden sm:flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 text-base font-medium absolute sm:static top-16 left-0 w-full sm:w-auto bg-background sm:bg-transparent p-4 sm:p-0 z-50 shadow-lg sm:shadow-none">
-      <a href="{% url 'home' %}" class="hover:text-neon transition">Home</a>
-      <a href="{% url 'tarrifs' %}" class="hover:text-neon transition">Plans</a>
+      <a href="{% url 'home' %}" class="text-lg hover:text-neon transition duration-300">Home</a>
+      <a href="{% url 'tarrifs' %}" class="text-lg hover:text-neon transition duration-300">Plans</a>
       {% if user.is_authenticated %}
-        <a href="{% url 'profile' %}" class="hover:text-neon transition">Profile</a>
+        <a href="{% url 'profile' %}" class="text-lg hover:text-neon transition duration-300">Profile</a>
         <form method="POST" action="{% url 'exit' %}" class="inline-block">
           {% csrf_token %}
-          <button type="submit" class="hover:text-neon transition text-white font-medium text-base bg-transparent border-none p-3 m-0 whitespace-nowrap">
+          <button type="submit" class="text-lg hover:text-neon transition duration-300 text-white font-medium text-base bg-transparent border-none p-3 m-0 whitespace-nowrap">
             Log Out
           </button>
         </form>

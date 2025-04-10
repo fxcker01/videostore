@@ -15,8 +15,8 @@
           {% endif %}
         </div>
         <div class="flex-1">
-          <h1 class="text-2xl font-semibold text-white mb-2">{{ lesson.title }}</h1>
-          <p class="text-sm text-gray-400">Course: <a href="{{ object.get_absolute_url }}"><strong>{{ object.title }}</strong></a></p>
+          <h1 class="text-3xl font-semibold text-white mb-2">{{ lesson.title }}</h1>
+          <p class="text-md text-gray-400">Course: <a href="{{ object.get_absolute_url }}"><strong>{{ object.title }}</strong></a></p>
         </div>
       </div>
 
@@ -40,21 +40,37 @@
           {% endif %}
         </div>
 
-        <div class="bg-card p-6 rounded-xl shadow-md text-gray-300">
-          <p>{{ lesson.desc|safe }}</p>
+        <div class="bg-card p-6 rounded-xl shadow-md text-gray-300 relative group">
+          <input type="checkbox" id="read-more-toggle" class="peer hidden">
+
+          <div class="max-h-40 overflow-hidden peer-checked:max-h-full transition-all duration-500">
+            <p class="text-md whitespace-pre-line">{{ lesson.desc|safe }}</p>
+          </div>
+
+          <div class="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-card to-transparent peer-checked:hidden pointer-events-none"></div>
+
+          <label for="read-more-toggle"
+                 class="mt-3 inline-block text-neon text-neon hover:text-accent text-sm cursor-pointer select-none peer-checked:hidden">
+            more
+          </label>
+
+          <label for="read-more-toggle"
+                 class="mt-3 hidden peer-checked:inline-block text-neon text-neon hover:text-accent text-sm cursor-pointer select-none">
+            less
+          </label>
         </div>
       {% else %}
         <div class="bg-card p-6 rounded-xl shadow-md text-red-400">
-          <p>You need to purchase a <a href="{% url 'tarrifs' %}" class="underline text-neon">subscription</a> to view this lesson.</p>
+          <p class="text-md">You need to purchase a <a href="{% url 'tarrifs' %}" class="underline text-neon">subscription</a> to view this lesson.</p>
         </div>
       {% endif %}
     </div>
 
     <div class="bg-card p-6 rounded-xl max-h-[700px] overflow-y-auto shadow-md">
-      <h2 class="text-xl font-semibold mb-4 text-white">Lessons</h2>
+      <h2 class="text-2xl font-semibold mb-4 text-white">Lessons</h2>
 
       {% if object.is_free == False and user.is_authenticated == False %}
-        <p class="text-gray-300">You need to <a href="{% url 'reg' %}" class="text-neon hover:underline">register</a> to access this course.</p>
+        <p class="text-md text-gray-300">You need to <a href="{% url 'reg' %}" class="text-neon hover:underline">register</a> to access this course.</p>
 
       {% else %}
         {% if object.is_free or user.profile.account_type == 'full' %}
@@ -63,11 +79,11 @@
               <li>
                 <a
                   href="{{ el.get_absolute_url }}"
-                  class="block p-2 rounded-md transition text-sm
+                  class="block p-2 rounded-md transition text-ms
                   {% if el.slug == lesson.slug %}
                     bg-neon text-background font-semibold
                   {% else %}
-                    text-neon hover:underline hover:bg-accent/20
+                    text-neon hover:bg-accent/20
                   {% endif %}">
                   {{ el.number }}. {{ el.title }}
                 </a>
@@ -75,7 +91,7 @@
             {% endfor %}
           </ul>
         {% else %}
-          <p class="text-gray-300">You need to purchase a <a href="{% url 'tarrifs' %}" class="text-neon hover:underline">subscription</a>!</p>
+          <p class="text-md text-gray-300">You need to purchase a <a href="{% url 'tarrifs' %}" class="text-neon hover:underline">subscription</a>!</p>
         {% endif %}
       {% endif %}
     </div>

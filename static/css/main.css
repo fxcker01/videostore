@@ -6,10 +6,25 @@
 }
 
 body {
-    background: #fef3e0;
-    font-weight: 300;
-    font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  font-family: 'Inter', sans-serif;
+  color: white;
+  background-color: #0f0f0f;
 }
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+
 
 a {
     color: #6f6f6f;
