@@ -37,6 +37,15 @@ It supports both free and paid video lessons (via YouTube & Vimeo), user profile
 
 ---
 
+---
+
+## 🌐 Live Demo
+
+Check out the live version here:  
+🔗 [web-production-7ae3.up.railway.app](https://web-production-7ae3.up.railway.app/)
+
+---
+
 ## 📄 License
 This project is licensed under a **Custom Proprietary License**.  
 Copying, distribution or usage without permission is strictly prohibited.  
